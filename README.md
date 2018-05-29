@@ -42,7 +42,9 @@ vim gulpfile.js
                         .js.pipe(gulp.dest("build"));
                 });
 
-gulp
+gulp      on mac :   yarn gulp 
+
+git checkout ./      // ignore local change
 
 
 
