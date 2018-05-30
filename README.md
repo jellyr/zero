@@ -29,6 +29,19 @@ yarn add -D gulp-typescript
 yarn add -D gulp-sourcemaps
 yarn add -D gulp-livereload
 yarn add -D gulp-connect
+yarn add -D webpack 
+<!--
+ yarn add -D @phosphor/commands
+yarn add -D @phosphor/messaging
+yarn add -D @phosphor/widgets 
+yarn remove  @phosphor/commands
+yarn remove  @phosphor/messaging
+yarn remove  @phosphor/widgets
+-->
+
+yarn add  @phosphor/commands
+yarn add  @phosphor/messaging
+yarn add  @phosphor/widgets
 
 vim gulpfile.js
 
@@ -46,7 +59,7 @@ gulp      on mac :   yarn gulp
 
 git checkout ./      // ignore local change
 
-
+vim webpack.config.js
 
 
 
