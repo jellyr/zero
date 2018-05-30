@@ -23,16 +23,22 @@ function createMenu() : Menu
     sub1.title.mnemonic = 0;
     sub1.addItem({command: 'example:one'});
 
+    let sub2 = new Menu({commands});
+    sub2.title.label = '22';
+    sub2.title.mnemonic = 0;
+    sub2.addItem({command: 'example:one'});
+
     let root = new Menu({ commands });
     root.addItem({ command: 'example:copy' });
-    root.addItem({ command: 'example:copy' });
-    root.addItem({ command: 'example:cut' });
-    root.addItem({ command: 'example:paste' });
-    root.addItem({ type: 'separator' });
-    root.addItem({ command: 'example:new-tab' });
-    root.addItem({ command: 'example:close-tab' });
-    root.addItem({ command: 'example:save-on-exit' });
+    // root.addItem({ command: 'example:copy' });
+    // root.addItem({ command: 'example:cut' });
+    // root.addItem({ command: 'example:paste' });
+    // root.addItem({ type: 'separator' });
+    // root.addItem({ command: 'example:new-tab' });
+    // root.addItem({ command: 'example:close-tab' });
+    // root.addItem({ command: 'example:save-on-exit' });
     root.addItem({ type: 'submenu', submenu: sub1});
+    root.addItem({ type: 'submenu', submenu: sub2});
 
     return root;
 
