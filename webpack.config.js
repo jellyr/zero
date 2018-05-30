@@ -5,6 +5,7 @@ const entryPath = path.resolve(__dirname, './build/main.js');
 const outputPath = path.resolve(__dirname, './view');
 
 module.exports = {
+  devtool: 'source-map',
     entry:  [
       entryPath,
       // __dirname + '/view/main.js'
