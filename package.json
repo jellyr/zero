@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "css-loader": "^0.28.11",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.5.0",
     "gulp-livereload": "^3.8.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^4.0.2",
+    "style-loader": "^0.21.0",
     "typescript": "^2.8.3",
     "webpack": "^4.10.1"
   },

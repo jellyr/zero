@@ -5,7 +5,7 @@ const entryPath = path.resolve(__dirname, './build/main.js');
 const outputPath = path.resolve(__dirname, './view');
 
 module.exports = {
-  devtool: 'source-map',
+  // devtool: 'source-map',
     entry:  [
       entryPath,
       // __dirname + '/view/main.js'
@@ -17,5 +17,13 @@ module.exports = {
       filename: 'bundle.js' // 输出文件的名称
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
 };
 

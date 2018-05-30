@@ -30,6 +30,10 @@ yarn add -D gulp-sourcemaps
 yarn add -D gulp-livereload
 yarn add -D gulp-connect
 yarn add -D webpack 
+
+yarn add -D css-loader 
+yarn add -D style-loader 
+
 <!--
  yarn add -D @phosphor/commands
 yarn add -D @phosphor/messaging
