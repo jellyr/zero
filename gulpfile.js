@@ -13,7 +13,7 @@ var webpackConfig = require("./webpack.config.js");
 
 //目录
 const PATHS = {
-    scripts:['./src/main.ts' , './src/greet.ts' ,'./view/*.html', './gulpfile.js', './tsconfig.json'],
+    scripts:['./src/main.ts','./src/shell.ts' , './src/*.ts' ,'./view/*.html', './gulpfile.js', './tsconfig.json', './style/*.css'],
      output:'./build',
 };
 

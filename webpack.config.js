@@ -1,4 +1,4 @@
-var path = require('path')
+﻿var path = require('path')
 
 
 const entryPath = path.resolve(__dirname, './build/main.js');
@@ -22,7 +22,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      }
+      },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+            },
     ]
   }
 };

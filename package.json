@@ -12,11 +12,14 @@
     "gulp-typescript": "^4.0.2",
     "style-loader": "^0.21.0",
     "typescript": "^2.8.3",
+    "url-loader": "^1.0.1",
     "webpack": "^4.10.1"
   },
   "dependencies": {
+    "@phosphor/application": "^1.6.0",
     "@phosphor/commands": "^1.5.0",
     "@phosphor/messaging": "^1.2.2",
+    "@phosphor/virtualdom": "^1.1.2",
     "@phosphor/widgets": "^1.6.0"
   }
 }

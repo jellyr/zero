@@ -33,7 +33,7 @@ yarn add -D webpack
 
 yarn add -D css-loader 
 yarn add -D style-loader 
-
+yarn add -D url-loader 
 <!--
  yarn add -D @phosphor/commands
 yarn add -D @phosphor/messaging
@@ -46,7 +46,8 @@ yarn remove  @phosphor/widgets
 yarn add  @phosphor/commands
 yarn add  @phosphor/messaging
 yarn add  @phosphor/widgets
-
+yarn add @phosphor/application
+yarn add @phosphor/virtualdom
 vim gulpfile.js
 
                 var gulp = require("gulp");

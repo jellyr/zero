@@ -1,43 +1,49 @@
-@import '~@phosphor/dragdrop/style/index.css';
-@import '~@phosphor/widgets/style/index.css';
-@import './commandpalette.css';
-@import './content.css';
-@import './dockpanel.css';
-@import './menu.css';
-@import './menubar.css';
-@import './tabbar.css';
+@import url('~@phosphor/widgets/style/index.css');
+@import './tree.css';
+/*-----------------------------------------------------------------------------
+| General
+|----------------------------------------------------------------------------*/
 
 
 body {
-  display: flex;
-  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--theia-ui-font-family);
+  background: var(--theia-layout-color3);
+}
+
+
+.theia-ApplicationShell {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
 }
 
 
-#menuBar {
-  flex: 0 0 auto;
+.p-Widget.p-mod-hidden {
+  display: none !important;
 }
 
-
-#main {
-  flex: 1 1 auto;
+.theia-FileNavigator {
+  overflow: auto;
+  color: var(--theia-ui-font-color1);
+  background:var(--theia-layout-color1);
+  font-size: var(--theia-ui-font-size1);
 }
 
-
-#palette {
-  min-width: 300px;
-  border-right: 1px solid #DDDDDD;
-}
+/*-----------------------------------------------------------------------------
+| Import children style files
+|----------------------------------------------------------------------------*/
 
 
-#dock {
-  padding: 4px;
-}
+@import './dockpanel.css';
+@import './menus.css';
+@import './sidepanel.css';
+@import './tabs.css';
+@import './variables.css';
+@import './materialcolors.css';
+
+
