@@ -23,7 +23,7 @@ function createFileMenu() : Menu
 
  
     let fileSub = new Menu({commands});
-    fileSub.title.label = 'menuFileSub';
+    fileSub.title.label = 'menuFileSub(一些子菜單)';
     fileSub.title.mnemonic = 0;
     fileSub.addItem({command: 'menuFileSub:menuSubTest1'});
     fileSub.addItem({command: 'menuFileSub:menuSubTest2'}); 
@@ -41,7 +41,7 @@ function createFileMenu() : Menu
 function main():void
 {
    commands.addCommand('menuFile:MenuCopy', {
-    label: 'Copy File',
+    label: 'Copy File(拷貝文件)',
     mnemonic: 0,
     icon: 'fa fa-copy',
     execute: () => {
@@ -50,17 +50,25 @@ function main():void
   });
 
   commands.addCommand('menuFileSub:menuSubTest1', {
-    label: 'file sub 1',
+    label: 'file sub 1 (子菜單1)',
     execute: () => {
       console.log('menuSubTest1');
     }
   });
 
   commands.addCommand('menuFileSub:menuSubTest2', {
-    label: 'file sub 2',
+    label: 'file sub 2(子菜單2)',
     execute: () => {
-      console.log('menuSubTest2');
+      console.log('One');
     }
+  });
+ 
+
+
+  commands.addKeyBinding({
+    keys: ['Accel C'],
+    selector: 'body',
+    command: 'menuFile:MenuCopy'
   });
 
  
@@ -70,6 +78,16 @@ function main():void
  
     let mainWindow = new BoxPanel({ direction: 'left-to-right', spacing: 0 });  mainWindow.id = 'mainWindow';
     
+
+    let ctxt = createFileMenu();
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+        event.preventDefault();
+        ctxt.open(event.clientX, event.clientY);
+        console.log('ctxt menu');
+      });
+
+
+
 
     window.onresize = () => { mainWindow.update(); };
     Widget.attach(menuBar, document.body);
