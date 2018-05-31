@@ -19,26 +19,25 @@ const commands = new CommandRegistry();
 function createMenu() : Menu
 {
     let sub1 = new Menu({commands});
-    sub1.title.label = 'More...';
+    sub1.title.label = 'sub menu';
     sub1.title.mnemonic = 0;
     sub1.addItem({command: 'example:one'});
 
-    let sub2 = new Menu({commands});
-    sub2.title.label = '22';
-    sub2.title.mnemonic = 0;
-    sub2.addItem({command: 'example:one'});
+    // let sub2 = new Menu({commands});
+    // sub2.title.label = '22';
+    // sub2.title.mnemonic = 0;
+    // sub2.addItem({command: 'example:one'});
 
     let root = new Menu({ commands });
+  
     root.addItem({ command: 'example:copy' });
-    // root.addItem({ command: 'example:copy' });
     // root.addItem({ command: 'example:cut' });
     // root.addItem({ command: 'example:paste' });
-    // root.addItem({ type: 'separator' });
-    // root.addItem({ command: 'example:new-tab' });
-    // root.addItem({ command: 'example:close-tab' });
-    // root.addItem({ command: 'example:save-on-exit' });
+
+
+
     root.addItem({ type: 'submenu', submenu: sub1});
-    root.addItem({ type: 'submenu', submenu: sub2});
+    // root.addItem({ type: 'submenu', submenu: sub2});
 
     return root;
 
@@ -46,9 +45,27 @@ function createMenu() : Menu
 
 function main():void
 {
+
+    commands.addCommand('example:copy', {
+        label: 'Copy File',
+        mnemonic: 0,
+        icon: 'fa fa-copy',
+        execute: () => {
+          console.log('Copy');
+        }
+      });
+
+      commands.addCommand('example:one', {
+        label: 'One',
+        execute: () => {
+          console.log('One');
+        }
+      });
+
+
     let menu1 = createMenu();
     menu1.title.label = 'File';
-    menu1.title.mnemonic = 1;
+    menu1.title.mnemonic = 0;
 
     let menu2 = createMenu();
     menu2.title.label = 'Edit';
@@ -60,10 +77,26 @@ function main():void
     bar.addMenu(menu2);
     bar.id = 'menuBar';
 
+    
+    let ctxt = createMenu();
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+        event.preventDefault();
+        ctxt.open(event.clientX, event.clientY);
+        console.log('ctxt menu');
+      });
+
+
+
+    let palette = new CommandPalette({ commands });
+
+    palette.addItem({ command: 'example:one', category: 'Editor' });
     //  BoxPanel.setStretch(dock, 1);
  
     let mainWindow = new BoxPanel({ direction: 'left-to-right', spacing: 0 });
     mainWindow.id = 'main';
+
+
+    
     mainWindow.addWidget(bar);
  
     window.onresize = () => { mainWindow.update(); };
