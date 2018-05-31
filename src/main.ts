@@ -76,8 +76,25 @@ function main():void
     let menuBar = new MenuBar();    menuBar.id = 'menuBar';     menuBar.addMenu(createFileMenu());
     
  
-    let mainWindow = new BoxPanel({ direction: 'left-to-right', spacing: 0 });  mainWindow.id = 'mainWindow';
-    
+
+
+    let r1 = new ContentWidget('Red');
+    let b1 = new ContentWidget('Blue');
+    let g1 = new ContentWidget('Green');
+    let y1 = new ContentWidget('Yellow');
+
+
+
+    let dock = new DockPanel();
+    dock.addWidget(r1);
+    dock.addWidget(b1, { mode: 'split-right', ref: r1 });
+    dock.addWidget(y1, { mode: 'split-bottom', ref: b1 });
+    dock.id = 'dock'; 
+
+    BoxPanel.setStretch(dock, 1);
+    let mainWindow = new BoxPanel({ direction: 'left-to-right', spacing: 0 }); 
+    mainWindow.id = 'main'; // important!!! why this set to main, then the content window all full size!!!
+    mainWindow.addWidget(dock);
 
     let ctxt = createFileMenu();
     document.addEventListener('contextmenu', (event: MouseEvent) => {
@@ -99,7 +116,38 @@ function main():void
 
 
 window.onload = main;
+class ContentWidget extends Widget {
 
+    static createNode(): HTMLElement {
+      let node = document.createElement('div');
+      let content = document.createElement('div');
+      let input = document.createElement('input');
+      input.placeholder = 'input something??';
+      content.appendChild(input);
+      node.appendChild(content);
+      return node;
+    }
+  
+    constructor(name: string) {
+      super({ node: ContentWidget.createNode() });
+      this.setFlag(Widget.Flag.DisallowLayout);
+      this.addClass('content');
+      this.addClass(name.toLowerCase());
+      this.title.label = name;
+      this.title.closable = true;
+      this.title.caption = `這是一個: ${name}`;
+    }
+  
+    get inputNode(): HTMLInputElement {
+      return this.node.getElementsByTagName('input')[0] as HTMLInputElement;
+    }
+  
+    protected onActivateRequest(msg: Message): void {
+      if (this.isAttached) {
+        this.inputNode.focus();
+      }
+    }
+  }
     /*
     commands.addCommand('example:copy', {
         label: 'Copy File',
