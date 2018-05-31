@@ -67,5 +67,5 @@ git checkout ./      // ignore local change
 vim webpack.config.js
 
 
-
+<!-- progress: compose the app using inversify 2017-3-3 -->
 <!-- 调试 -->
