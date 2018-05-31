@@ -83,12 +83,18 @@ function main():void
     let g1 = new ContentWidget('Green');
     let y1 = new ContentWidget('Yellow');
 
-
+    let r2 = new ContentWidget('Red');
+    let b2 = new ContentWidget('Blue');
 
     let dock = new DockPanel();
     dock.addWidget(r1);
     dock.addWidget(b1, { mode: 'split-right', ref: r1 });
     dock.addWidget(y1, { mode: 'split-bottom', ref: b1 });
+    dock.addWidget(g1, { mode: 'split-left', ref: y1 });
+    dock.addWidget(r2, { ref: r1 });
+    dock.addWidget(b2, { mode: 'split-right', ref: y1 });
+ 
+
     dock.id = 'dock'; 
 
     BoxPanel.setStretch(dock, 1);
