@@ -6,46 +6,81 @@ import {
     Message
 } from '@phosphor/messaging';
 
-
 import{
     BoxPanel, CommandPalette, DockPanel, Menu, MenuBar, Widget
 } from '@phosphor/widgets';
 
-// import css from './style/index.css';
 import '../style/index.css';
 const commands = new CommandRegistry();
 
 
-function createMenu() : Menu
+
+function createFileMenu() : Menu
 {
-    let sub1 = new Menu({commands});
-    sub1.title.label = 'sub menu';
-    sub1.title.mnemonic = 0;
-    sub1.addItem({command: 'example:one'});
+    let fileMenu = new Menu({ commands });
+    fileMenu.addItem({ command: 'menuFile:MenuCopy' });
 
-    // let sub2 = new Menu({commands});
-    // sub2.title.label = '22';
-    // sub2.title.mnemonic = 0;
-    // sub2.addItem({command: 'example:one'});
 
-    let root = new Menu({ commands });
-  
-    root.addItem({ command: 'example:copy' });
-    // root.addItem({ command: 'example:cut' });
-    // root.addItem({ command: 'example:paste' });
+ 
+    let fileSub = new Menu({commands});
+    fileSub.title.label = 'menuFileSub';
+    fileSub.title.mnemonic = 0;
+    fileSub.addItem({command: 'menuFileSub:menuSubTest1'});
+    fileSub.addItem({command: 'menuFileSub:menuSubTest2'}); 
 
 
 
-    root.addItem({ type: 'submenu', submenu: sub1});
-    // root.addItem({ type: 'submenu', submenu: sub2});
 
-    return root;
+    fileMenu.addItem({ type: 'submenu', submenu: fileSub});
 
+    fileMenu.title.label = 'File';
+    fileMenu.title.mnemonic = 0;
+    return fileMenu;
 }
 
 function main():void
 {
+   commands.addCommand('menuFile:MenuCopy', {
+    label: 'Copy File',
+    mnemonic: 0,
+    icon: 'fa fa-copy',
+    execute: () => {
+      console.log('Copy');
+    }
+  });
 
+  commands.addCommand('menuFileSub:menuSubTest1', {
+    label: 'file sub 1',
+    execute: () => {
+      console.log('menuSubTest1');
+    }
+  });
+
+  commands.addCommand('menuFileSub:menuSubTest2', {
+    label: 'file sub 2',
+    execute: () => {
+      console.log('menuSubTest2');
+    }
+  });
+
+ 
+
+    let menuBar = new MenuBar();    menuBar.id = 'menuBar';     menuBar.addMenu(createFileMenu());
+    
+ 
+    let mainWindow = new BoxPanel({ direction: 'left-to-right', spacing: 0 });  mainWindow.id = 'mainWindow';
+    
+
+    window.onresize = () => { mainWindow.update(); };
+    Widget.attach(menuBar, document.body);
+    Widget.attach(mainWindow, document.body);
+}
+
+
+
+window.onload = main;
+
+    /*
     commands.addCommand('example:copy', {
         label: 'Copy File',
         mnemonic: 0,
@@ -75,38 +110,17 @@ function main():void
 
     bar.addMenu(menu1);
     bar.addMenu(menu2);
-    bar.id = 'menuBar';
-
-    
-    let ctxt = createMenu();
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-        event.preventDefault();
-        ctxt.open(event.clientX, event.clientY);
-        console.log('ctxt menu');
-      });
+    */
+   // let ctxt = createMenu();
+    // document.addEventListener('contextmenu', (event: MouseEvent) => {
+    //     event.preventDefault();
+    //     ctxt.open(event.clientX, event.clientY);
+    //     console.log('ctxt menu');
+    //   });
 
 
 
-    let palette = new CommandPalette({ commands });
 
-    palette.addItem({ command: 'example:one', category: 'Editor' });
-    //  BoxPanel.setStretch(dock, 1);
- 
-    let mainWindow = new BoxPanel({ direction: 'left-to-right', spacing: 0 });
-    mainWindow.id = 'main';
-
-
-    
-    mainWindow.addWidget(bar);
- 
-    window.onresize = () => { mainWindow.update(); };
-
-    Widget.attach(mainWindow, document.body);
-
-}
-
-console.log('main?'); 
-window.onload = main;
 
 
 
@@ -115,3 +129,28 @@ window.onload = main;
 //     }
 // hello("TypeScript haha  shi ");
 
+/*
+function createMenu() : Menu
+{
+    // let sub1 = new Menu({commands});
+    // sub1.title.label = 'sub menu';
+    // sub1.title.mnemonic = 0;
+    // sub1.addItem({command: 'example:one'});
+
+    // let sub2 = new Menu({commands});
+    // sub2.title.label = '22';
+    // sub2.title.mnemonic = 0;
+    // sub2.addItem({command: 'example:one'});
+    let root = new Menu({ commands });
+  
+    root.addItem({ command: 'example:copy' });
+    // root.addItem({ command: 'example:cut' });
+    // root.addItem({ command: 'example:paste' });
+
+
+    root.addItem({ type: 'submenu', submenu: sub1});
+    // root.addItem({ type: 'submenu', submenu: sub2});
+    return root;
+
+}
+*/
