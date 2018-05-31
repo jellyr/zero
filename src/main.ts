@@ -62,7 +62,7 @@ function main():void
       console.log('One');
     }
   });
- 
+
 
 
   commands.addKeyBinding({
@@ -87,7 +87,9 @@ function main():void
       });
 
 
-
+      document.addEventListener('keydown', (event: KeyboardEvent) => {
+        commands.processKeydownEvent(event);
+      });
 
     window.onresize = () => { mainWindow.update(); };
     Widget.attach(menuBar, document.body);
